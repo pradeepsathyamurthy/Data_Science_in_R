@@ -1,0 +1,86 @@
+Welcome to Getting Data. This is one of the more unique courses
+in our to Data Science track and so I wanted to give you a little bit
+of motivation and prerequisites for the course, so you get an idea about
+what we're gonna be talking about. This course covers the basic
+ideas behind getting your data ready to actually perform
+a data analysis on it. So this is a step that's often skipped
+when you're taking a class in machine learning or statistics. They sort of assume that the data
+are already ready to use. They're in a nice, neat format. So this class deals with the nitty-gritty
+of finding the raw data in whatever form they are,
+whether they're in a database or whether they're in a row image file or
+something else and extracting that data out and then it's
+also concerned with tidy data principles. Taking those raw data that are really
+complicated and may be formatted not so nicely and putting them into a nice tidy
+format that makes it easy to use them when you're actually doing data analysis. It also covers practical implementation
+through a range of R packages and we'll be talking about a big range
+of R packages in this class. This course assumes that you've taken
+the Data Scientist's Toolbox and installed all the relevant tools. And also that you've taken the R
+Programming class or some similar class so that you have enough R Programming
+background not to be intimidated. It would also be useful if you've taken
+some exploratory data analysis and also maybe the Reporting and Data and
+Reproducible Research class. Exploratory data analysis is relevant, because you might want to plot some of
+the data while you're doing data cleaning. And Reporting Data and Reproducible
+Research cover creating scripts that will reproduce your analysis, which is
+an important component cleaning data, but these aren't required for
+you to be able to follow the course. So what you wish data would look
+like is something like this. So you can see here, this is an Excel file
+where you actually have in every single raw you have one observation. And in every single column,
+you have exactly one variable. And so it's neatly organized into
+something that looks like a matrix, which makes it very easy to import this
+into R or another programming language and start to perform more complicated
+statistical analysis. But as we saw in
+the Data Scientist's Toolbox, real data looks much different than that. For example, this is a fast cue file. And in the fast cue file, you might be interested in actually
+extracting sort of the sequence information from one line of this file or
+from each separate line of the file. And so to get at that sequence
+information, you actually have to parse this raw text file and extract out
+the bits that you actually care about. And so one of the steps in sort of getting
+data is actually getting into these raw files, figuring out their structure and
+being able to extract the relevant bits. Another thing that might happen is that
+you might get data that's actually quite neatly structured. So for example,
+this is the data from the API of Twitter. And so what it is, it's actually data
+that's formatted in JSON format. And so JSON formatted data is
+actually quite neat and organized and very easy to distribute, but it's very
+hard to actually use to do downstream analyses in many programming languages. So you might wanna reorganize that data in
+such a way that it's easy to analyze and do things with. And so that's another component
+of getting and cleaning data. Finally, you might have situations like
+this where you have instructions like take one tablet by mouth and take
+one-half tablet with grapefruit juice. These are actually free-text instructions
+that you might wanna be able to get into that free-text and extract out. A little piece of that information say,
+how many tablets have they been instructed to take and categorize that
+by each record that you collected? So the data might also be somewhere
+that you have to extract it out. So even if the data is in
+a structure environment or environment where you
+might want to analyze it. So here are a couple of examples,
+these are both databases. So MySQL and MongoDB are two very popular
+free databases where data might be stored say, for example,
+if you're working at a company. And you might wanna be able to go into
+that database, collect some of that data in its raw form and then process it in
+such a way that you can do analysis maybe on some subset of the data or create
+an algorithm that will allow you to apply predictive analytics to data that
+you collect from these databases. So again,
+the data may be in all sorts of places. It doesn't necessarily have to be data
+that's sitting on a file in your computer. For example, this is a get request,
+we'll talk about it in this class. It's a request to try and
+get some information off of a website. And so in this case, it's getting information from Twitter API
+about specific tweets or specific users. Data might also be available
+from other websites. So this is a website that we'll see
+relatively frequently in this class, which is the Open Data
+website from Baltimore. And so this contains a bunch of datasets
+that are very interesting and useful for you to be able to analyze and
+they're all free, which is great, but you have to be able to
+get them off the web. Get them from the API or
+from one of the downloadable files and clean them up, so that you can
+do downstream analysis on them. So if you think about the whole
+pipeline of going from a raw dataset, you might have a database all the way to
+the end to sort of the data that you might communicate to a colleague or
+a collaborator or a business partner. There's actually a large number of steps. And so what ends up happening
+in most statistics and machine learning classes,
+they focus on this data analysis step, which is an important component of the
+data processing pipeline, but they tend to skip over this early stage where you
+actually go from raw data to tidy data. And that turns out to be one of the more
+important components in any kind of environment where the data aren't
+necessarily already pre-tidy for you. So, any kind of start up company or
+most large corporations or almost every academic environment. You'll wanna know how to actually
+get at the raw data itself, so that you can do the cleaning yourself, so
+you understand the principles of what's going on and
+that's what this class is all about.

@@ -1,0 +1,3 @@
+Ref to get data from all apis:
+
+https://github.com/hadley/httr/tree/master/demo
