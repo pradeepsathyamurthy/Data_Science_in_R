@@ -2,7 +2,7 @@
 # http://facweb.cdm.depaul.edu/sjost/csc433/
 # CSC 433 -- Apr 24, 2017
 # Topics Discussed: R-Help, c, mode, length, class, typeof, is/as operators, rep/seq, ^ and %%, 
-# speacial values (NA NaN Inf NULL), cat/print, 
+# speacial values (NA NaN Inf NULL), cat/print, matrix, attributes, dim/dimnames, list/$, 
 
 # Topic-1
 # R is case sensitive
@@ -80,7 +80,7 @@ NaN # <- Not a Number, result of an arithmetic operation that is undefined for e
 NULL # <- null object. Returned by expressions and functions whose return value is undefined
 
 # Printing the R objects
-cat('Matrix M\n\n',m) # Cat wil categorise between Text to be printed and special cases
+cat('Matrix M\n\n',m) # Cat wil concatenate and print i.e. categorise between Text to be printed and R objects
 print('Matrix M\n\n',m) # Print would just print what is giben inside the quotes, prints only the first argument
 
 # Matrices 
@@ -104,5 +104,67 @@ A <- array(scan('array.txt'), c(3, 3, 3))
 print(A)
 setwd('D:/Courses/Coursera/Data_Science_in_R/R Univ Practice')
 
+# Subsetting Vector and matrix
+# [] is the subset/slicing operator
+# 1. Subsetting with +ve indices
+a = c("apple", "orange", "pear", "grape")
+u = c(1, 4)
+a[u]
+a[c(1,4)]
+# 2. use a vector of negative indices, values in these -ve indeces are omitted by the subset operator
+v=c(-2,-3)
+a[v]
+# 3. use vector of boolean value
+w=c(T,F,F,T)
+a[w]
+# The subset operator for a matrix takes two inputs
+m <- matrix(1:50,10,5,byrow = T)
+m[5:10, -4] # <- Rows 5 through 10 are selected and column 4 is omitted from the matrix m
+# If a slice of width 1 is selected from a matrix, a vector will be produced, as in this example
+m[,3] # <- subsetting column in a matrix object
+m[3,] # <- subsetting row in a matrix object
+m[,3, drop=F] # <- To preserve the matrix structure of this slice, include the drop=F argument
 
+# Attributes - These are properties associated with an object
+M <- matrix(c(4.5, 2.9, 0.7, 4.0), 2, 2, byrow=T)
+cat('Matrix M:\n')
+print(M)
+cat('Attributes of M:\n')
+print(attributes(M))
+# Now create a matrix with dimnames attributes.
+A <- matrix(c(34, 8, -2, 21), 2, 2, byrow=T,dimnames=list(c('r1', 'r2'), c('c1', 'c2')))
+print(A)
+print(attributes(A))
+# See what these matrices look like if you consider them to be vectors.
+print(as.vector(M))
+print(as.vector(A))
+# M and A are not vectors because of their extra attributes.
+print(is.vector(M))
+print(is.vector(A))
+# We can change M and A into vectors by throwing away their attributes.
+dim(M) <- NULL
+dim(A) <- NULL
+dimnames(A) <- NULL
+cat('Are M and A vectors?\n')
+cat(is.vector(M), '  ', is.vector(A), '\n')
+cat('Matrix M:\n')
+print(M)
+cat('Matrix A:\n')
+print(A)
+
+# List
+# list is a R data structure with a named component associated with it
+scores <- list(name=c("Jason","Ginger","Mary"),midterm=c(89, 93, 90))
+is.atomic(scores) # <- list is not atomic, means it can be further decomposed
+class(scores) # list is a speacial class object in R that deals with data structure
+# subsetting list - $
+scores$name #<- use $ with attribute name to subset that particular vector from list
+
+# Dataframe - alternative to list which looks like a conventional dataset
+scores1 <- data.frame(name=c("Jason","Ginger","Mary"),midterm=c(89, 93, 90))
+is.atomic(scores1) # this is again not atomic in nature
+class(scores1) # # data.frame is a speacial class object in R that deals with data structure
+
+# File input
+# Scan funtion is used to read the data from user as part of keyborad input or through input files
 
