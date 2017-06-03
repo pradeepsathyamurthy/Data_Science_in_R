@@ -206,6 +206,61 @@ cat('Mean of vector x is:::', mean(x),'/n')
 sink() # <- stops the sink initiated and start to return o/p to RAM
 
 # R in-built function
+# 1. Help Function and Operator
+?cat
+help("cat")
+?'%%' # <- For help with symbols, place them in backquotes
+
+#2. Vector Construction
+x <- c(1,2,3,4,5,6,7,8,9,10,1,1,2,4,4,4,4,4) # <- c can be called as a construct function
+y <- c(1:18)
+length(x) # Used to find the vector length 
+
+#3. Stat Functions
+mean(x) # <- mean of a vector object
+sd(x) # <- standard deviation of a vector object
+quantile(x) # <- find the generic quantile of vector object, default probablity seq increment is 0.25
+quantile(x,probs = seq(0,1,0.05)) # <- prob seq range from 0 to 1 and increment is set to 0.05 here
+median(x) # <- find the median of a vector object x
+IQR(x) # <- find the inter quantile range
+var(x) # <- find the variance of a vector object
+cor(x,y) # <- find the correlation between two vector object
+
+#4. Math Utility Functions
+
+
+
+
+
+
+
+#5. Trig Functions
+
+#6. Exponential and Logarithms
+
+#7. Character
+
+#8. Matrix Operations
+
+
+#9. Apply a Function to margins of Matrix, Array, or to List Elements
+
+
+#10. Bind Together Matrices
+
+
+#11. R Utility Functions
+
+
+#12. Execution Time of Function
+
+
+#13. Distributions and Densities 
+
+
+
+
+
 
 
 # R User defined function
@@ -220,13 +275,14 @@ square(4)
 # User defined replacement function
 # A replacement function looks as if it modifies the argument of a function
 v <- 1:4
-'second<-' = function(v,value){
+'second<-' <- function(v,value){
     v[2]=value
     return(v)
 }
 second(v) <- 5
 print(v)
 # Note that back quotes are needed to define the second<- function.
+# it means directly substitue 5 in second index, it can be simply done as v[2]<- 5
 
 # user defined operator
 # A user defined operator is delimited with % symbols
