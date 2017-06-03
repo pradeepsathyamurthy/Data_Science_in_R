@@ -1,9 +1,11 @@
 # R Learning from week-5 of Prof.Jost class
 # http://facweb.cdm.depaul.edu/sjost/csc433/
 # CSC 433 -- Apr 24, 2017
-# Topics Discussed: R-Help, c, mode, length, class, typeof, is/as operators, rep
+# Topics Discussed: R-Help, c, mode, length, class, typeof, is/as operators, rep/seq, ^ and %%, 
+# speacial values (NA NaN Inf NULL), cat/print, 
 
 # Topic-1
+# R is case sensitive
 # R Help command
 help(data.frame) # Used to find help on any R objects
 ?data.frame # anaother way to access help in R
@@ -64,5 +66,43 @@ p = seq(from=900, to=600, by=-100)
 # m:n creates a sequence from m to n, inclusive. in R index starts with 1 unlike Python which is 0
 s = 1:6
 r = 9:6
+
+# An operator precedence table of R operators, some important unused opearator are discussed below, look for table for anymore
+2^3 # <- Exponentiation
+4%%3 # <- Mod operator, returns reminder
+3%/%2 # <- integer division, you will not get a floating value, value is always discreate
+4/3 # <- Division, provides floating or continuous value
+
+# Speacial values in R, all these are case sensitive
+NA # <- Not applicable, stands for missing values
+Inf # <- Infinity, for values which are outof range for e.g. 2^10000
+NaN # <- Not a Number, result of an arithmetic operation that is undefined for e.g 0/0 Inf/Inf Inf*0 Inf - Inf
+NULL # <- null object. Returned by expressions and functions whose return value is undefined
+
+# Printing the R objects
+cat('Matrix M\n\n',m) # Cat wil categorise between Text to be printed and special cases
+print('Matrix M\n\n',m) # Print would just print what is giben inside the quotes, prints only the first argument
+
+# Matrices 
+# A matrix is a two-dimensional array of atomic elements
+# An n * m matrix is a matrix with n rows and m columns
+# Use the matrix command to format a vector into rows and columns, take care there is a right element count in vector to forma matrix of defines size
+v = c(4, 2, 5, 9, 4, 7, -1, 6, 0, 3, 2, 7)
+m = matrix(v, 3, 4, byrow=TRUE) # <- Vector is converted to becomes a two dimentional object in R now
+# + - Matrix Addition * - Scalar Multiplication %*% - Matrix Multiplication t - Transpose diag(nrow=n) - Identity solve - Inverse
+# Matrix Example 
+# Read data from a file into a matrix.
+setwd('C:/datasets')
+M <- matrix(scan('matrix.txt'), 20, 20, byrow=T)
+print(M)
+setwd('D:/Courses/Coursera/Data_Science_in_R/R Univ Practice')
+# An array is an extension of the matrix data struction to possibly more than two dimensions
+# Read data from a file into a 3x3x3 array.
+setwd('C:/datasets')
+cat('Array A\n\n')
+A <- array(scan('array.txt'), c(3, 3, 3))
+print(A)
+setwd('D:/Courses/Coursera/Data_Science_in_R/R Univ Practice')
+
 
 
