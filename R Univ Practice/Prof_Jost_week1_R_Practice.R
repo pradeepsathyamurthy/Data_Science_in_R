@@ -298,23 +298,28 @@ b <- c(1,2,3)
 lapply(b,cube1)  # lapply is used for list/array objects and returns list object
 sapply(b,cube1) # it is a wrapper of lapply which returns vector, make easy to use
 
-
 #10. Bind Together Matrices
-
+# bind functions are mainly used on a matrix object which is more than 1 dimentional 
+A <- matrix(1:9,3,3,byrow = T)
+B <- matrix(10:18,3,3,byrow = T)
+rbind(A,B) # Merge/Bind by rows
+cbind(A,B) # Merge/Bind by Columns
 
 #11. R Utility Functions
-
+ls()
+rm()
+setwd()
+getwd()
 
 #12. Execution Time of Function
-
+system.time(rnorm(10000000)) # <- computes the execution time of an R function call
+# give user, system and elapsed time
+rnorm(10) # <-generates a vector of n independent standard normal random variables. Standard normal means mean=0 and standard deviation=1
 
 #13. Distributions and Densities 
-
-
-
-
-
-
+pnorm(10)
+dnorm(10)
+rnorm(10)
 
 # R User defined function
 # x = parameters and y = return value
