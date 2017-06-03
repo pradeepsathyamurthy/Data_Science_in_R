@@ -214,6 +214,7 @@ help("cat")
 #2. Vector Construction
 x <- c(1,2,3,4,5,6,7,8,9,10,1,1,2,4,4,4,4,4) # <- c can be called as a construct function
 y <- c(1:18)
+z <- seq(-10,10,0.234)
 length(x) # Used to find the vector length 
 
 #3. Stat Functions
@@ -227,18 +228,56 @@ var(x) # <- find the variance of a vector object
 cor(x,y) # <- find the correlation between two vector object
 
 #4. Math Utility Functions
-
-
-
-
-
-
+sum(x) # <- give the sum of vector object x
+sqrt(x) # <- give the square root for individual element in vector object x
+square(x) # <- give the square for individual element in vector object x
+sum(square(sqrt(x))) # <- cascade function that can be bilt in R
+prod(x) # <- give the product of vector object x
+log(x) # <- give the natural log for individual element in vector object x
+abs(z) # <- give the absolute value (without sign) for individual element in vector object x
+ceiling(z) # in case of negative ceil done based on highest value of -ve(-9.8=-9), and for +ve higher value of +ve (9.8=10)
+floor(z) # opp to ceiling, wrap to lowest value of -ve and +ve numbers
+round(z) # anyting more than 0.5 is taken to next highest value for +ve and next lowest for -ve values
+sign(z) # <- indicate weather a number is +ve or -ve, indicated as +1 or -1 for the same
 
 #5. Trig Functions
+sin(x)
+cos(x)
+tan(x)
+asin(x) # <- used to compute arc-sin
+acos(x)
+atan(x)
+atan(x)
+pi # returns a pi value of 3.14
+sin(pi)
 
 #6. Exponential and Logarithms
+log(x) # <- Natrual log
+log10(x) # <- log to the base of 10
+log2(x) # <- log to the base of 2
+log1p(x) # <- log to the base of |x+1|
+exp(x) # <- exponential of x for the power of e^x, where value of e is 2.718282
 
-#7. Character
+#7. Character or important string functions
+str1 <- 'My Name is Pradeep Sathyamurthy'
+str2 <- 'I am doing my masters in DePaul'
+str3 <- c('Specialization in Data Science', 'Skilled in Python, SAS, R, Big Data')
+# Unlike Python, R characters/strings are also mutable like any other data types
+str3[2] <- 'Skilled in Python, SAS, R, Big Data, Tableau'
+nchar(str1) # <- length() to vector is nchar() to string, give the length of the string
+paste(str1,str2,str3) # <- concatenate char R-objects & Vectors
+substr(str1,1,18) # <- used to subset a string based on a start and stop value, remember R index starts with 1 and not 0
+toupper(str3) # <- Converts a string or character vector to upper case
+tolower(str2) # <- Converts a string or character vector to lower case
+chartr('i','I',str3) # <- Replace old char with new, here 'i' is replaced with I
+strtrim(str3,5) # <- Used to trim the character object
+strsplit(str3,split=',') # <- used to split the string based on a spilt char mentioned, it can be a space or any symbol like , or |
+
+
+
+
+
+
 
 #8. Matrix Operations
 
