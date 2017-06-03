@@ -273,16 +273,30 @@ chartr('i','I',str3) # <- Replace old char with new, here 'i' is replaced with I
 strtrim(str3,5) # <- Used to trim the character object
 strsplit(str3,split=',') # <- used to split the string based on a spilt char mentioned, it can be a space or any symbol like , or |
 
-
-
-
-
-
-
 #8. Matrix Operations
-
+A <- matrix(1:9,3,3,byrow = T)
+B <- matrix(10:18,3,3,byrow = T)
+b <- c(1:3)
+A+B # <- Matrix Addition
+A-B # <- Matrix Subtraction
+A%*%B # <- Dot Product
+A*B # <- Scalar Product
+t(A) # <- Transpose a matrix, row to col 
+diag(A) # <- extract the diagonal of a matrix
+solve(A,b) # <- solve the equation A*x=b
+det(A) # <- findt the determinant of a Matrix
+?solve
 
 #9. Apply a Function to margins of Matrix, Array, or to List Elements
+cube1 <- function(x){
+    x^3
+}
+A <- matrix(1:9,3,3,byrow = T)
+apply(A,1,cube1)  # apply is used on a matrix object only, second argument defines how a funct needs to be applied by rows or by columns, 3rd argument is the function that nees to be applied
+apply(A,2,cube1) # computes cube based on column elements
+b <- c(1,2,3)
+lapply(b,cube1)  # lapply is used for list/array objects and returns list object
+sapply(b,cube1) # it is a wrapper of lapply which returns vector, make easy to use
 
 
 #10. Bind Together Matrices
