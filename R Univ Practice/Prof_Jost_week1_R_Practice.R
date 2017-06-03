@@ -4,6 +4,7 @@
 # Topics Discussed: R-Help, c, mode, length, class, typeof, is/as operators, rep/seq, ^ and %%, 
 # speacial values (NA NaN Inf NULL), cat/print, matrix, attributes, dim/dimnames, list/$, scan, 
 # File read: read.table, read.csv, read.fwf, source, sink
+# Functions: function(){}, 'funct1<-'=function(){}, '%.%' <- function(u, v){}
 
 # Topic-1
 # R is case sensitive
@@ -205,3 +206,49 @@ cat('Mean of vector x is:::', mean(x),'/n')
 sink() # <- stops the sink initiated and start to return o/p to RAM
 
 # R in-built function
+
+
+# R User defined function
+# x = parameters and y = return value
+square <- function(x) {
+    y <- x^2
+    return(y) # <- R returns the value of the last statement executed in a function and so we can remove this y if needed
+}
+# Calling a function that was built
+square(4)
+
+# User defined replacement function
+# A replacement function looks as if it modifies the argument of a function
+v <- 1:4
+'second<-' = function(v,value){
+    v[2]=value
+    return(v)
+}
+second(v) <- 5
+print(v)
+# Note that back quotes are needed to define the second<- function.
+
+# user defined operator
+# A user defined operator is delimited with % symbols
+# Here is the definition of the vector dot product
+'%.%' <- function(u, v) {
+    return(sum(u * v))
+}
+# Again, note that double quotes are needed to define %.%
+# The dot product operator can be tested like this
+a <- 1:4
+b <- 1:4
+a %.% b
+
+# Factors
+# A factor is the R represention for categorical data
+days <- factor(c('Wed', 'Thu', 'Sat', 'Mon'))
+# To record all possible levels of the factor, not just the ones that happen to be in days, use the levels parameter
+days.of.week <- c('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat')
+days <- factor(c('Wed', 'Thu', 'Sat', 'Mon'), levels=days.of.week)
+# Factors are actually represented internally by numbers
+as.numeric(days)
+# A factor can be used in R statistical analysis functions or plotted like this
+time <- c(65, 68, 66, 31)
+plot(days, time)
+
