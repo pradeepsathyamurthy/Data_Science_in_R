@@ -2,7 +2,8 @@
 # http://facweb.cdm.depaul.edu/sjost/csc433/
 # CSC 433 -- Apr 24, 2017
 # Topics Discussed: R-Help, c, mode, length, class, typeof, is/as operators, rep/seq, ^ and %%, 
-# speacial values (NA NaN Inf NULL), cat/print, matrix, attributes, dim/dimnames, list/$, 
+# speacial values (NA NaN Inf NULL), cat/print, matrix, attributes, dim/dimnames, list/$, scan, 
+# File read: read.table, read.csv, read.fwf, source
 
 # Topic-1
 # R is case sensitive
@@ -80,8 +81,18 @@ NaN # <- Not a Number, result of an arithmetic operation that is undefined for e
 NULL # <- null object. Returned by expressions and functions whose return value is undefined
 
 # Printing the R objects
+# Entering an expression in a script file will not automatically display the value of the expression. 
+# Use the print function to display the value. For example print(mean(x))
+# An alternative to print is the cat command. 
+# Using print includes the vector index at the beginning of each output line and quote marks for character data. 
+# Using cat suppresses vector indices and quote marks for character data. 
+# Also, new line characters (\n) must be explicitly included with cat
 cat('Matrix M\n\n',m) # Cat wil concatenate and print i.e. categorise between Text to be printed and R objects
 print('Matrix M\n\n',m) # Print would just print what is giben inside the quotes, prints only the first argument
+mean(x)
+print(mean(x))
+print("The mean of the vector x is ", mean(x))
+cat("The mean of the vector x is ", mean(x), ".\n")
 
 # Matrices 
 # A matrix is a two-dimensional array of atomic elements
@@ -167,4 +178,29 @@ class(scores1) # # data.frame is a speacial class object in R that deals with da
 
 # File input
 # Scan funtion is used to read the data from user as part of keyborad input or through input files
+# Enter a blank line to terminate input from keyboard
+x = scan() # <- this will read data and create a vector object
+setwd('C:/datasets')
+y <- scan('matrix.txt')
+print(y)
+# To load data from a file in table format, use the read.table function. 
+# The current working directory contains the file scores.txt with these contents
+scores2 = read.table("scores.txt", header=TRUE) # make sure the data file has end of line in the final line
+scores2$name
+# 1. Space Delimited
+kids1 <- read.table('kids1.txt', header=T)
+# 2. Comma Delimited
+kids2 <- read.csv('kids2.txt', header=T, sep=',')
+# 3. Fixed Width Fields
+kids3 <- read.fwf('kids3.txt', widths=c(10,1,2), header=F, col.names=c('name', 'gender', 'age'))
+source("Prof_Jost_week2_R_Practice.r") # <- these are use to inherit any methods from other files 
+setwd('D:/Courses/Coursera/Data_Science_in_R/R Univ Practice')
+
+# Redirecting the output to disk or secondary storage
+# it is like a spool command in SQL
+sink("output_sample.txt") # <- need to mention the file name when we need to start writing the output
+print(x)
+mean(x)
+cat('Mean of vector x is:::', mean(x),'/n')
+sink() # <- stops the sink initiated and start to return o/p to RAM
 
