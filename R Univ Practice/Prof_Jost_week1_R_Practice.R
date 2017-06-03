@@ -3,7 +3,7 @@
 # CSC 433 -- Apr 24, 2017
 # Topics Discussed: R-Help, c, mode, length, class, typeof, is/as operators, rep/seq, ^ and %%, 
 # speacial values (NA NaN Inf NULL), cat/print, matrix, attributes, dim/dimnames, list/$, scan, 
-# File read: read.table, read.csv, read.fwf, source
+# File read: read.table, read.csv, read.fwf, source, sink
 
 # Topic-1
 # R is case sensitive
@@ -204,3 +204,4 @@ mean(x)
 cat('Mean of vector x is:::', mean(x),'/n')
 sink() # <- stops the sink initiated and start to return o/p to RAM
 
+# R in-built function
