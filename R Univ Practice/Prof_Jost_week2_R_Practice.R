@@ -44,12 +44,7 @@ col=heat.colors(4) # <- From one of the R predefined color palettes rainbow, hea
 # use the first 4 colours of heat.color
 palette(c("red", "green", "blue")) #<- By setting a defined color pallet
 
-
-
-
-
-
-# plotting using the log-log sale
+# plotting using all the extra graphing parameters available
 autos <- read.table('C:/datasets/autosales.txt', header = T)
 dimnames(autos)
 # AutoSales1 -- Draw a scatterplot of auto sales broken down by types auto, truck, SUV. 
@@ -87,5 +82,64 @@ legend(1, max_y, names(autos), cex=0.8, col=plot_colors, pch=21:23, lty=1:3);
 # Turn off device driver (to flush output to png)
 dev.off()
 
+# Bar plot
+# AutoSales3 -- Create barplots of the one week sales of automobiles.
+# Read car and truck values from tab-delimited autos.dat
+autos <- read.table("c:/datasets/autosales.txt", header=T, sep="\t") 
+# Start PNG device driver to save output to disk.
+pdf("autosales3.pdf")
+# Graph cars with specified labels for axes.  Use blue 
+# borders and diagnal lines in bars.
+barplot(autos$cars, main="AutoSales3 Example: Cars Only",
+        names.arg=autos$days, border="blue", xlab="Day of Week",
+        ylab="Number of Cars Sold", density=c(5, 10, 15, 20, 25)) 
+# Graph autos with adjacent bars using rainbow colors
+barplot(as.matrix(autos[,-1]), xlab="Automobile Categories",
+        ylab="One Week Sales of Vehicles", beside=T, col=rainbow(5),
+        main="AutoSales3 Example: Side-by-side Bar Graph")
+# Place the legend at the top-left corner with no frame  
+# using rainbow colors
+legend("topleft", legend=autos$days, cex=1.3, bty="n", fill=rainbow(5));
+# Expand right side of clipping rect to make room for the legend
+par(xpd=T, mar=par()$mar+c(0,0,0,4))
+# Graph autos (transposing the matrix) using heat colors,  
+# put 10% of the space between each bar, and make labels  
+# smaller with horizontal y-axis labels
+barplot(t(autos[,-1]), main="AutoSales3 Example: Stacked Bar Graph", 
+        ylab="One Week Sales of Automobiles", col=heat.colors(3), 
+        space=0.1, cex.axis=0.8, las=1, names.arg=autos$days, cex=0.8) 
+# Place the legend at (6,30) using heat colors
+legend(6, 30, names(autos), cex=0.8, fill=heat.colors(3))
+# Restore default clipping rect
+par(mar=c(5, 4, 4, 2) + 0.1)
+# Turn off device driver (to flush output to png)
+dev.off()
+
+# pie chart
+cars <- autos$cars
+days <- autos$days
+pie(cars)
+# Add day of week labels and title.
+pie(cars, labels=days, col=rainbow(length(cars)),
+    main="Car Sales by Day of Week")
+# Change colors, label using percentages, and add a legend.
+colors <- c("white", "gray70", "gray90", "gray50", "black")
+car_labels <- round((cars / sum(cars)) * 100, 1)
+car_labels <- paste(days, ": ", car_labels, "%", sep="")
+pie(cars, main="Car Sales by Day of Week", col=colors,
+    labels=car_labels)
+
+# Dot chart
+# Create a dotchart for autos
+dotchart(t(autos[,-1]), main="Dot Chart Showing Auto Sales")
+# Create a colored dotchart for autos with smaller labels
+dotchart(t(autos[,-1]), color=c("red","blue","darkgreen"),
+         main="Dot Chart Showing Auto Sales", cex=0.9)
+
+# Histogram
+hist(data.cars$speed, breaks = 4)
+
+# Box Plot
+# Read data from UCLA website.
 
 
