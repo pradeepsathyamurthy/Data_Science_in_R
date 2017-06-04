@@ -4,7 +4,8 @@
 # Topics Discussed: R-Help, c, mode, length, class, typeof, is/as operators, rep/seq, ^ and %%, 
 # speacial values (NA NaN Inf NULL), cat/print, matrix, attributes, dim/dimnames, list/$, scan, 
 # File read: read.table, read.csv, read.fwf, source, sink
-# Functions: function(){}, 'funct1<-'=function(){}, '%.%' <- function(u, v){}
+# Functions: function(){}, 'funct1<-'=function(){}, '%.%' <- function(u, v){}, R-built in functions
+# Factors: factor(vector1)
 
 # Topic-1
 # R is case sensitive
@@ -17,6 +18,7 @@ setwd('D:/Courses/Coursera/Data_Science_in_R/R Univ Practice')
 getwd()
 
 # Quiting R Program
+q()
 quit()
 
 # Topic-2
@@ -44,10 +46,10 @@ values1 <- c(T, 34, "dog") # <- R will change everthing in to char as CHAR is th
 # class function is also used for the same
 # length is used to find the length of a vector
 # is operator is used to check if the mode of a vector, gives T/F value
-mode(values)
+mode(values) # u can change the mode of a object like this as well mode(v) <- "character"
 class(values1)
 typeof(flags)
-length(values)
+length(values) # u can change the length of a object like this as well length(v) <- 10
 is.numeric(values)
 is.atomic(animals)
 # atomic elements are those which cannot be decomposed into further smaller elements
@@ -88,6 +90,10 @@ NULL # <- null object. Returned by expressions and functions whose return value 
 # Using print includes the vector index at the beginning of each output line and quote marks for character data. 
 # Using cat suppresses vector indices and quote marks for character data. 
 # Also, new line characters (\n) must be explicitly included with cat
+# In simple terms:
+# print can only print a single object and it knows how to format the object. 
+# cat can print multiple objects, but does not know about formatting.
+# Most nonatomic objects, for example lists and data frames, cannot be printed with cat. 
 cat('Matrix M\n\n',m) # Cat wil concatenate and print i.e. categorise between Text to be printed and R objects
 print('Matrix M\n\n',m) # Print would just print what is giben inside the quotes, prints only the first argument
 mean(x)
@@ -100,6 +106,8 @@ cat("The mean of the vector x is ", mean(x), ".\n")
 # An n * m matrix is a matrix with n rows and m columns
 # Use the matrix command to format a vector into rows and columns, take care there is a right element count in vector to forma matrix of defines size
 v = c(4, 2, 5, 9, 4, 7, -1, 6, 0, 3, 2, 7)
+# R is written from fortan which is a column major, unlike c, c++, java which are row major
+# thus by default byrow=FALSE
 m = matrix(v, 3, 4, byrow=TRUE) # <- Vector is converted to becomes a two dimentional object in R now
 # + - Matrix Addition * - Scalar Multiplication %*% - Matrix Multiplication t - Transpose diag(nrow=n) - Identity solve - Inverse
 # Matrix Example 
@@ -300,6 +308,7 @@ sapply(b,cube1) # it is a wrapper of lapply which returns vector, make easy to u
 
 #10. Bind Together Matrices
 # bind functions are mainly used on a matrix object which is more than 1 dimentional 
+# by default byrow is always FALSE
 A <- matrix(1:9,3,3,byrow = T)
 B <- matrix(10:18,3,3,byrow = T)
 rbind(A,B) # Merge/Bind by rows
@@ -365,4 +374,6 @@ as.numeric(days)
 # A factor can be used in R statistical analysis functions or plotted like this
 time <- c(65, 68, 66, 31)
 plot(days, time)
+
+
 
