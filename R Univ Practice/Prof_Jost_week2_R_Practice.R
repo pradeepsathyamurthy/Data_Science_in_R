@@ -36,7 +36,8 @@ dev.off() # <- turn off the device driver, that is switch off the file where gra
 # mfrow - Specifies that subsequent figures will be positioned in an nc × nr array in row major order
 par("pch")
 par("mfcol")
-
+par("mfrow")
+?barplot
 # Colors for R graphics can be specified in four ways
 col="DarkKhaki" #<- by name
 col="#808000" # <- by color coordinates
@@ -133,13 +134,36 @@ pie(cars, main="Car Sales by Day of Week", col=colors,
 # Create a dotchart for autos
 dotchart(t(autos[,-1]), main="Dot Chart Showing Auto Sales")
 # Create a colored dotchart for autos with smaller labels
-dotchart(t(autos[,-1]), color=c("red","blue","darkgreen"),
-         main="Dot Chart Showing Auto Sales", cex=0.9)
+dotchart(t(autos[,-1]), color=c("red","blue","darkgreen"), main="Dot Chart Showing Auto Sales", cex=0.9)
 
 # Histogram
 hist(data.cars$speed, breaks = 4)
+# break can be:
+# a vector giving the breakpoints between histogram cells
+# a single number giving the number of cells for the histogram (suggestion only)
+# a character string naming an algorithm to compute the number of cells.The choices are "Sturges", "Scott", "FD" (Friedman-Diaconis)
+# a function to compute the number of cells
+# If x is the data vector and the bin width is h, then the number of bins k can be calculated as k = (max x - min x) / h
+# The breaks parameter can accept one of these three algorithms for automatically choosing the number of histogram bins
+# Sturges's Rule (breaks="Sturges") h = 1 + log2n
+# Scott's Rule (breaks="Scott") h = 3.5 s / n^1/3 
+# Freedman-Diaconis Rule (breaks="FD") h = 2 * IQR / n^1/3 
 
 # Box Plot
 # Read data from UCLA website.
-
-
+hsb2 <- read.table('http://www.ats.ucla.edu/stat/r/modules/hsb2.csv', header=T, sep=",")
+attach(hsb2)
+# Send graphs to file.
+pdf("boxplots.pdf")
+# Create boxplots.
+boxplot(write, main="Boxplots Example: Boxplot 1")
+boxplot(write, xlab="Writing Score", boxwex=.4, col="lightblue",
+        main="Boxplots Example: Boxplot 2")
+boxplot(write ~ ses, main="Boxplots Example: Boxplot 3")
+seslab <- as.vector(c("low","medium", "high"))
+sesf <- factor(ses, label=seslab)
+boxplot(write ~ sesf, xlab="write by ses", main="Boxplots Example: Boxplot 4")
+boxplot(write ~ sesf, xlab="write by ses", boxwex=.2, notch = TRUE, col = "lightblue", main="Boxplots Example: Boxplot 5")
+# Use two factors
+boxplot(write ~ female + ses, xlab="write by female and ses", boxwex=0.2)
+dev.off( )
