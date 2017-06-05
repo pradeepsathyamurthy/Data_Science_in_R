@@ -5,9 +5,6 @@
 
 # Our focus in this week is on control stuctures
 
-setwd("D:/Courses/Coursera/R")
-getwd()
-
 ########################################
 # if - elseif - else 
 ########################################
@@ -47,7 +44,6 @@ for(i in x){
 
 # Usage of seq_along() function
 # Genrate a sequence based on x length
-
 for(i in seq_along(x)){
     print(x[i])
 }
