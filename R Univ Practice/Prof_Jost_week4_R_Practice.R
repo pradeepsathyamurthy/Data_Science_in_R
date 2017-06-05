@@ -26,7 +26,7 @@ class(fit) # navigated by generic function
 summary(fit) # navigated by generic function
 summary.lm(fit) # navigated by generic function
 
-# S3 and S4 classes
+# S3 vs S4 classes
 # S3 is a old style class, it is quick, dirty and informal
 # s4 is a new style class, rigorous and formal
 # Most of the R objects are built in S3. However, objects constructed nowadays are in S4 class type
@@ -34,9 +34,6 @@ summary.lm(fit) # navigated by generic function
 # Just add class name to an object, no formal requirements, just expect object to have right information
 
 # S3 Class construction
-# As a practice we will create a S3 class called infant
-# This object will have growth details from birth to 36 months
-# object will contain: 1. ID Number, 2. Gender, 3. dataframe of age, height and weight
 # Step-1: Set class attribute of the object using class()
 # Step-2: set methods by writing function with name 'generic.class'
 #           generic => generic function name, class => class for the method
@@ -52,7 +49,7 @@ summary.lm(fit) # navigated by generic function
 # Prof. Jost examples
 # 1. Creating/instantiating a S3 Class object
 k1 <- list(name="Alice", gender="F", age=11)
-class(k1) = "Kid"
+class(k1) = "Kid" # <- Setting the class attribute of the object using class()
 # Print the kids object created
 print(k1)
 
@@ -129,6 +126,10 @@ getAge.Kid <- function(theObject) {
 # Some more examples from book 
 # S3 class construction and usage
 ################################################################################################################################
+
+# As a practice we will create a S3 class called infant
+# This object will have growth details from birth to 36 months
+# object will contain: 1. ID Number, 2. Gender, 3. dataframe of age, height and weight
 
 # Instantiating a S3 class object
 infant <- function(ID, sex, age, ht, wt){
