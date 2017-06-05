@@ -49,22 +49,25 @@ summary.lm(fit) # navigated by generic function
 # Prof. Jost examples
 # 1. Creating/instantiating a S3 Class object
 k1 <- list(name="Alice", gender="F", age=11)
-class(k1) = "Kid" # <- Setting the class attribute of the object using class()
+class(k1) = "Kid" # <- Setting the class attribute of the object using class(), that is basically we are changing the list object to a kid object
 # Print the kids object created
 print(k1)
+k2 <- kid("Mark","M",12) # this will throw error because R knows there is a object called kid but it doesnt know how to behave or access it (basically it is not a class object)
 
-# Constructor to create a S3 class object
+# 2. General way is to first construct the class object and then use it
+# Constructor to create a S3 class object, we are basically constructing the behaviour of kid class object
+# now that we have created a kid object, we need to construct how it behaves
 kid <- function(theName, theGender, theAge) {
-    theObject <- list(name=theName, gender=theGender, age=theAge)
+    theObject <- list(name=theName, gender=theGender, age=theAge) # repeating the same we done above but this time inside a constructor
     class(theObject) = "Kid"
     return(theObject)
 }
 
-# Creating kids object using constructor and printing with generic function
+# 3. Using the class object
 k2 <- kid("Mark","M",12)
 print(k2)
 
-# Visible and Invisible methods
+# 4. Visible and Invisible methods
 # we build our custom methods above the generic methos which is available from R
 # all print methods available in R can be seen through 
 methods(print)
@@ -74,9 +77,9 @@ print.data.frame # <- this is a visible methods, its source is displayed
 print.zoo # print.zoo* is a non-visible, that is its source code cannot be viewed
 getAnywhere(print.zoo) # <- however even a invisible methods can be viewded through a function called getAnywhere()
 
-# Defining custom methods, it is going to be a custom print method
-print.Kid <- function(theObject) {
-    cat(theObject$name, theObject$gender, theObject$age, "\n")
+# 5. Defining custom methods above the generic function, it is going to be a custom print method
+print.Kid <- function(xxx) {
+    cat(xxx$name, xxx$gender, xxx$age, "\n")
 }
 # using the custom print method
 print(k1) # Generic method/Generic Function
@@ -84,11 +87,14 @@ print.Kid(k1) # Custom method/Custom Function
 
 # Defining a method whose generic class do not exist
 haveBirthday(k1)
+rm(haveBirthday) # rm is used to remove a R object from existance, becareful while using this
 # lets define it using the usemethod
-haveBirthday <- function(theObject) {
-    UseMethod("haveBirthday", theObject)
+# this is just a definition, a empty method shell is created
+haveBirthday <- function(yyy) {
+    UseMethod("haveBirthday", yyy) # Usemethod is a generic function which is used to expose oops methods
 }
 # Now define our custom function derived from a custom function
+# Name below must have the class name associated with method if you remove kid from haveBirthday.Kid, class object method will trrow error
 haveBirthday.Kid <- function(theObject) {
     theObject$age <- theObject$age + 1
     return(theObject)
@@ -103,6 +109,8 @@ haveBirthday.default <- function(theObject) {
             "called with unrecognized object")
     return(theObject)
 }
+haveBirthday('prady') # we need a default method defined to through exception when arguments passed to class method is not right
+
 # Finally, we define accessor methods (getters) that return the values of the individual components name, gender, and age
 getName <- function(theObject) {
     UseMethod("getName", theObject)
