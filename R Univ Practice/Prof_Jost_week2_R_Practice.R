@@ -1,6 +1,6 @@
 # R Learning from week-6 of Prof.Jost class
 # http://facweb.cdm.depaul.edu/sjost/csc433/
-# CSC 433 -- Apr 24, 2017
+# CSC 433 -- Apr 24,2017
 # Topics Discussed: R-graphics
 
 data.cars <- cars
