@@ -1,6 +1,6 @@
 # R Learning from week-5 of Prof.Jost class
 # http://facweb.cdm.depaul.edu/sjost/csc433/
-# CSC 433 -- Apr 24, 2017
+# CSC 433 -- Apr 24,2017
 # Topics Discussed: R-Help, c, mode, length, class, typeof, is/as operators, rep/seq, ^ and %%, 
 # speacial values (NA NaN Inf NULL), cat/print, matrix, attributes, dim/dimnames, list/$, scan, 
 # File read: read.table, read.csv, read.fwf, source, sink
