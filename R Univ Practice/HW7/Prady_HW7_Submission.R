@@ -18,7 +18,6 @@ ChlorReads <- function(id_val, name_val, gender_val, ldl_val, hdl_val, trigl_val
 # LDL 240 and up High Risk "*"
 
 print.ChlorReads <- function(chlorReadsobject){
-    
     if(chlorReadsobject$ldl >= 0 & chlorReadsobject$ldl < 200){
         chlorReadsobject$ldl = paste0(chlorReadsobject$ldl,"")
     } else if(chlorReadsobject$ldl >= 200 & chlorReadsobject$ldl < 240){
@@ -142,8 +141,11 @@ for(j in 1:length(lst)){
 
 # Problem-5.d
 # Uses a for loop to plot all of the ChlorReads objects in lst to a PDF file
-for(k in 1:length(lst)){
-    plot(lst[k])
-    pdf("Pradeep_graph_output.pdf")
-    dev.off()
+for(i in 1:length(lst)){
+    pdf("proj7SathyamurthyPradeep_plot1.pdf")
+    plot_data <- ChlorReads(chlor[i, ]$id, as.character(chlor[i, ]$name),
+               as.character(chlor[i, ]$gender), chlor[i, ]$ldl,  
+               chlor[i, ]$hdl, chlor[i, ]$trigl)
+    plot(plot_data)
 }
+dev.off()
