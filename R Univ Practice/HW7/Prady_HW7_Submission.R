@@ -51,3 +51,15 @@ print(p1)
 
 # Define the method plot.ChlorReads that plots the data in the ChlorReads object like this
 
+plot.ChlorReads <- function(chlorReadsobject){
+    
+    plotobject <- chlorReadsobject
+    x_names <- c("LDL","HDL","Triglycerides")
+    footer_notes <- paste("ID:",chlorReadsobject$id,"Name:", chlorReadsobject$name,"Gender:", chlorReadsobject$gender)
+    barplot(c(chlorReadsobject$ldl,chlorReadsobject$hdl,chlorReadsobject$trigl), names.arg = x_names,main="ChlorReads Readings",ylim = c(0,300),sub = footer_notes)
+    
+}
+
+plot(p1)
+
+
