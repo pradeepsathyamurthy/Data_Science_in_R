@@ -47,7 +47,7 @@ print.ChlorReads <- function(chlorReadsobject){
 }
 
 p1 <- ChlorReads(9876, "Virgil", "M", 248, 45, 148)
-print(p1)
+print.ChlorReads(p1)
 
 # Define the method plot.ChlorReads that plots the data in the ChlorReads object like this
 
@@ -62,4 +62,88 @@ plot.ChlorReads <- function(chlorReadsobject){
 
 plot(p1)
 
+# Define the accessor methods getPatientInfo.ChlorReads and getChloresterol.ChlorReads
+# First define the generic methods getPatientInfo and getCholesterol and 
+# the default methods getPatientInfo.default and getCholesterol.default. For example:
+# getPatientInfo(p1)
+# ID   Name   Gender 
+# 9876 Virgil M
+# getChloresterol(p1)
+# LDL HDL Trigl
+# 208  45 148
 
+# Generic method
+getPatientInfo <- function(chlorReadsobject){
+    UseMethod("getPatientInfo",chlorReadsobject)
+}
+
+getChloresterol <- function(chlorReadsobject){
+    UseMethod("getChloresterol",chlorReadsobject)
+}
+
+getPatientInfo.ChlorReads <- function(chlorReadsobject){
+    patientInfo <- data.frame(chlorReadsobject[1],chlorReadsobject[2],chlorReadsobject[3])
+    return(patientInfo)
+}
+
+getChloresterol.ChlorReads <- function(chlorReadsobject){
+    chloresterolInfo <- data.frame(chlorReadsobject[4],chlorReadsobject[5], chlorReadsobject[6])
+    return(chloresterolInfo)
+}
+
+getPatientInfo.default <- function(chlorReadsobject){
+    warning("Check the Object passed for patient info")
+    return(chlorReadsobject)
+}
+
+getChloresterol.default <- function(chlorReadsobject){
+    warning("Check the Object passed for Chloresterol info")
+    return(chlorReadsobject)   
+}
+
+getPatientInfo(p1)
+getChloresterol(p1)
+getPatientInfo(1)
+getChloresterol("prady")
+
+# Porblem-5: Write an R script that does the following
+
+
+# Problem-5.a: Tests the methods defined in 1 through 4
+
+p1 <- ChlorReads(9876, "Virgil", "M", 248, 45, 148)  # <- Testing problem-1
+class(p1) # <- Testing problem-1
+
+print(p1) # <- Testing problem-2
+
+plot(p1) # <- Testing problem-3
+
+getPatientInfo(p1)  # <- Testing problem-4
+getChloresterol(p1) # <- Testing problem-4
+getPatientInfo(1) # <- Testing problem-4
+getChloresterol("prady") # <- Testing problem-4
+
+# Problem-5.b
+
+setwd("D:/Courses/Coursera/Data_Science_in_R/R Univ Practice/HW7")
+lst <- NULL
+chlor <- read.table("chlor-reads.txt",header = TRUE)
+for(i in 1:nrow(chlor)) {
+    lst[[i]] <- ChlorReads(chlor[i, ]$id, as.character(chlor[i, ]$name),
+                           as.character(chlor[i, ]$gender), chlor[i, ]$ldl,  
+                           chlor[i, ]$hdl, chlor[i, ]$trigl)
+}
+
+# Problem-5.c
+# Uses a for loop to print all of the ChlorReads objects in lst
+for(j in 1:length(lst)){
+    print(lst[j])
+}
+
+# Problem-5.d
+# Uses a for loop to plot all of the ChlorReads objects in lst to a PDF file
+for(k in 1:length(lst)){
+    plot(lst[k])
+    pdf("Pradeep_graph_output.pdf")
+    dev.off()
+}
